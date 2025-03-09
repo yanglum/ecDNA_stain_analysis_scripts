@@ -1,0 +1,19 @@
+path:
+    directory: C:\Users\luyan\Desktop\line
+    ROIs: ['metaphase']
+    channels: ['dapi', 'ki67', 'mycfish'] # this is also used by sort, segment, and untethering/micronuclei analysis
+# combine channels:
+    combine_channels: []
+    combine_colors: []
+# segmentation:
+    high_thresh: [] # highest multi-otsu threshold; dapi here for mitosis
+    low_thresh: [] # top two highest multi-otsu threshold; dapi here for interphase
+    combine_masks: [] # takes union of 2 masks and create a new mask for chrDNA (used by segment and analyze_untethering)
+    close_holes: [] # channels to do morphological closing on binary segmentation
+# untethering:
+    chrDNA_channel: ''
+    ecDNA_channel: ''
+    no_nuclei: 1 # use 1 for prophase/metaphase, 2 for anaphase/telophase (when 2 is selected, only pick top 2 if delta is < 2.8x)
+    expand_chrDNA_pixel: 3 # to adjust segmentation: how many pixels to expand chrDNA segmentation by (along x, y)
+# what to run ('analyze_micronuclei does everything analyze_untethering does, but also requires mnseg masks in 'labels' folder):
+    to_run: ['analyze_line'] # 'sort', 'combine', 'segment', 'analyze_untethering', 'analyze_micronuclei', 'analyze_stains'
